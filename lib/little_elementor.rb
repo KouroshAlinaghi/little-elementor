@@ -8,11 +8,14 @@ module LittleElementor
     attr_reader :period, :atomic_number, :group, :charge, :is_nobel_gas, :symbol, :name
     def initialize(atomic_number, charge = 0)
       @atomic_number = atomic_number + charge
-      @is_nobel_gas = [2, 10, 18, 36, 54, 86, 118].include?(@atomic_number)
+      raise "atomic number is out of range" unless (1..118).include?(@atomic_number)
+      raise "Lanthanides and actinides are not supported yet." if ((57..71).to_a+(89..103).to_a).include? @atomic_number
+      raise "Transition metals are not supported yet." if ((39..48).to_a+(72..80).to_a+(104..112).to_a).include? @atomic_number
+      @group = get_group()
+      @is_nobel_gas = @group == 18
       @name = LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:name]
       @period = electron_configuration.map(&:n).max
       @charge = charge
-      @group = get_group()
       @symbol = LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:sym]
     end
 
@@ -25,3 +28,6 @@ module LittleElementor
     end
   end
 end
+
+e = LittleElementor::Element.new(123)
+puts e

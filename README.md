@@ -47,4 +47,4 @@ puts cu # output:
  # group: 11
 
 ```
-*Important*: Lanthanides and actinides are not supported yet. 
+*Important*: Lanthanides and actinides and Transition metals are not supported yet. 
