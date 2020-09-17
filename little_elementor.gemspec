@@ -8,6 +8,6 @@ Gem::Specification.new do |s|
   s.email       = 'kouroshalinaghi@gmail.com'
   s.files       = ["lib/little_elementor.rb", "lib/little-elementor/orbital.rb", "lib/little-elementor/helpers.rb"]
   s.homepage    =
-    'https://github.com/kouroshalinaghi/little_elementor'
+    'https://github.com/kouroshalinaghi/little-elementor'
   s.license       = 'MIT'
 end
