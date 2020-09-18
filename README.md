@@ -32,7 +32,7 @@ And Also the `Orbital#to_s` method is overwrited for more human-friendly output.
 
 ## Usage
 ```ruby
-require 'little-elementor'
+require 'little_elementor'
 cu = LittleElementor::Element.new(atomic_number: 30, charge: -1) # the second argument (`charge`) is optional. (default: `0`)
 puts cu # output:
 

@@ -33,6 +33,3 @@ module LittleElementor
     end
   end
 end
-
-e = LittleElementor::Element.new(atomic_number: 30, charge: -1)
-puts e
