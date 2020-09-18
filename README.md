@@ -33,7 +33,7 @@ And Also the `Orbital#to_s` method is overwrited for more human-friendly output.
 ## Usage
 ```ruby
 require 'little-elementor'
-cu = LittleElementor::Element.new(30, -1) # the second argument (`charge`) is optional. (default: `0`)
+cu = LittleElementor::Element.new(atomic_number: 30, charge: -1) # the second argument (`charge`) is optional. (default: `0`)
 puts cu # output:
 
  # Symbol: Cu
@@ -46,5 +46,8 @@ puts cu # output:
  # period: 4
  # group: 11
 
+ # to create a new element instance, you can use three named arguments: symbol, atomic_number, charge (optional)
+
 ```
-*Important*: Lanthanides and actinides and Transition metals are not supported yet. 
+
+**Important**: Lanthanides and actinides and Transition metals are not supported yet. 

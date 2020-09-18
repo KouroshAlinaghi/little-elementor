@@ -6,17 +6,20 @@ module LittleElementor
     include LittleElementor::Helpers
 
     attr_reader :period, :atomic_number, :group, :charge, :is_nobel_gas, :symbol, :name
-    def initialize(atomic_number, charge = 0)
-      @atomic_number = atomic_number + charge
-      raise "atomic number is out of range" unless (1..118).include?(@atomic_number)
-      raise "Lanthanides and actinides are not supported yet." if ((57..71).to_a+(89..103).to_a).include? @atomic_number
-      raise "Transition metals are not supported yet." if ((39..48).to_a+(72..80).to_a+(104..112).to_a).include? @atomic_number
-      @group = get_group()
+    def initialize(opts)
+      opts = opts.has_key?(:charge) ? opts : opts.merge({:charge => 0})
+      if opts.has_key?(:atomic_number)
+        @atomic_number = opts[:atomic_number] + opts[:charge]
+        @symbol = LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:sym]
+      elsif opts.has_key?(:symbol)
+        @atomic_number = LittleElementor::Helpers::ELEMENTS.find_index{|i| i[:sym] == opts[:symbol]} + 1
+        @symbol = opts[:symbol]
+      end
+      @group = @atomic_number == 2 ? 18 : get_group()
       @is_nobel_gas = @group == 18
       @name = LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:name]
       @period = electron_configuration.map(&:n).max
-      @charge = charge
-      @symbol = LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:sym]
+      @charge = opts[:charge]
     end
 
     def electron_configuration(sorted: true)
@@ -29,5 +32,5 @@ module LittleElementor
   end
 end
 
-e = LittleElementor::Element.new(123)
+e = LittleElementor::Element.new(atomic_number: 30, charge: -1)
 puts e
