@@ -1,6 +1,7 @@
 module LittleElementor
   module Helpers
 
+    PERIODS = [2, 8, 8, 18, 18, 18, 18]
     L = ["S", "P", "D", "F", "G", "H", "I", "J"]
     ELEMENTS = [
       {name: "hydrogen", sym: "H"},
@@ -25,7 +26,7 @@ module LittleElementor
       {name: "calcium", sym: "Ca"},
       {name: "scandium", sym: "Cs"},
       {name: "titanium", sym: "Ti"},
-      {name: "vanadium", sym: "Va"},
+      {name: "vanadium", sym: "V"},
       {name: "chromium", sym: "Cr"},
       {name: "manganese", sym: "Mn"},
       {name: "iron", sym: "Fe"},
@@ -135,6 +136,10 @@ module LittleElementor
         end
       end
     end
+    
+    def get_name()
+      LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:name]
+    end
 
     def get_e_c(sorted)                                                                                
       i = 0
@@ -152,6 +157,17 @@ module LittleElementor
         i+=els
       end
       return sorted ? arr.sort_by{|o| o.n} : arr
+    end
+  
+    def get_c_e_c()
+      if @period == 1
+        [nil, electron_configuration]
+      else
+        i = LittleElementor::Helpers::PERIODS[0..@period-2].sum
+        nobel_gas = LittleElementor::Element.new(atomic_number: i)
+        c_e_c = electron_configuration.slice(nobel_gas.electron_configuration.length, electron_configuration.length-1).map(&:to_s)
+        [nobel_gas, c_e_c]
+      end
     end
   end
 end

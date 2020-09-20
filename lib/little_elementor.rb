@@ -20,7 +20,7 @@ module LittleElementor
       end
       @group = @atomic_number == 2 ? 18 : get_group()
       @is_nobel_gas = @group == 18
-      @name = LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:name]
+      @name = get_name()
       @period = electron_configuration.map(&:n).max
     end
 
@@ -29,7 +29,20 @@ module LittleElementor
     end
 
     def to_s
-      "Symbol: #{@symbol}\nis a noble gas?: #{@is_nobel_gas}\ncharge: #{@charge}\nname: #{@name}\natomic_number #{@atomic_number}\nsorted electron configuration: #{electron_configuration.map(&:to_s)}\nelectron configuration: #{electron_configuration(sorted: false).map(&:to_s)}\nperiod: #{@period}\ngroup: #{@group}\nfake_atomic_number: #{@fake_atomic_number}"
+      "Compressed Electron Configuration: #{human_friendly_c_e_c}\nSymbol: #{@symbol}\nis a noble gas?: #{@is_nobel_gas}\ncharge: #{@charge}\nname: #{@name}\natomic_number #{@atomic_number}\nsorted electron configuration: #{electron_configuration.map(&:to_s)}\nelectron configuration: #{electron_configuration(sorted: false).map(&:to_s)}\nperiod: #{@period}\ngroup: #{@group}\nfake_atomic_number: #{@fake_atomic_number}"
+    end
+
+    def compressed_electron_configuration
+      if @compressed_electron_configuration
+        @compressed_electron_configuration
+      else
+        @compressed_electron_configuration = get_c_e_c()
+      end
+    end
+
+    def human_friendly_c_e_c
+      sym = @period == 1 ? "" : "[#{compressed_electron_configuration[0].symbol}] "
+      "#{sym}#{compressed_electron_configuration[1].map(&:to_s).join ", "}"
     end
   end
 end
