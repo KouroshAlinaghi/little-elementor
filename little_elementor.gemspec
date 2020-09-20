@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'little-elementor'
-  s.version     = '0.1.0'
+  s.version     = '0.1.2'
   s.date        = '2020-09-17'
   s.summary     = "A Little Elementor!"
   s.description = "A little library that gives you minimal information about an element."

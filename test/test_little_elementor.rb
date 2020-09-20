@@ -6,7 +6,6 @@ class LittleElementorTest < Minitest::Test
     h = LittleElementor::Element.new(atomic_number: 1)
     assert_equal h.atomic_number, 1
     assert_equal h.human_friendly_c_e_c, "1S1"
-    assert_equal h.fake_atomic_number, 1
     assert_equal h.charge, 0
     assert_equal h.group, 1
     assert_equal h.period, 1
@@ -21,7 +20,6 @@ class LittleElementorTest < Minitest::Test
     h = LittleElementor::Element.new(symbol: "H")
     assert_equal h.atomic_number, 1
     assert_equal h.human_friendly_c_e_c, "1S1"
-    assert_equal h.fake_atomic_number, 1
     assert_equal h.charge, 0
     assert_equal h.group, 1
     assert_equal h.period, 1
@@ -35,7 +33,6 @@ class LittleElementorTest < Minitest::Test
   def test_he_with_sym_and_charge
     h = LittleElementor::Element.new(symbol: "He", charge: -1)
     assert_equal h.atomic_number, 2
-    assert_equal h.fake_atomic_number, 1
     assert_equal h.human_friendly_c_e_c, "1S2"
     assert_equal h.charge, -1
     assert_equal h.group, 18
@@ -51,7 +48,6 @@ class LittleElementorTest < Minitest::Test
     cr = LittleElementor::Element.new(atomic_number: 25, charge: -1)
     assert_equal cr.atomic_number, 24
     assert_equal cr.human_friendly_c_e_c, "[Ar] 3D5, 4S1"
-    assert_equal cr.fake_atomic_number, 25
     assert_equal cr.charge, -1
     assert_equal cr.is_nobel_gas, false
     assert_equal cr.symbol, "Cr"
