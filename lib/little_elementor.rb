@@ -10,7 +10,7 @@ module LittleElementor
       opts = opts.has_key?(:charge) ? opts : opts.merge({:charge => 0})
       @charge = opts[:charge]
       if opts.has_key?(:atomic_number)
-        @atomic_number = @fake_atomic_number + @charge
+        @atomic_number = opts[:atomic_number] + @charge
         @symbol = LittleElementor::Helpers::ELEMENTS[@atomic_number-1][:sym]
       elsif opts.has_key?(:symbol)
         @atomic_number = LittleElementor::Helpers::ELEMENTS.find_index{|i| i[:sym] == opts[:symbol]} + 1
