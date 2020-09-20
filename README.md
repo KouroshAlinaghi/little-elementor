@@ -26,7 +26,9 @@ Here are the `Orbital`'s instance variables:
 | `@group` | `Integer` |
 | `@charge` | `Integer` |
 | `@symbol` | `String` |
+| `@compressed_electron_configuration` | `[Orbinal's instance, [...electron_configuraition...]]` |
 
+**Tip:** Call `ELement#human_friendly_c_e_c()` for human-friendly output.
 There is also an `electron_configuration()` instance method with an optional named argument `sorted` (default: `true`) that returns an `Array` of instances of `Orbital`.
 And Also the `Orbital#to_s` method is overwrited for more human-friendly output.
 
@@ -36,6 +38,7 @@ require 'little_elementor'
 cu = LittleElementor::Element.new(atomic_number: 30, charge: -1) # the second argument (`charge`) is optional. (default: `0`)
 puts cu # output:
 
+ # Compressed Electron Configuration: [Ar] 3D5, 4S1
  # Symbol: Cu
  # is a noble gas?: false
  # charge: -1
