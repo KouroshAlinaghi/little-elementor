@@ -24,7 +24,7 @@ module LittleElementor
       {name: "argon", sym: "Ar"},
       {name: "potassium", sym: "K"},
       {name: "calcium", sym: "Ca"},
-      {name: "scandium", sym: "Cs"},
+      {name: "scandium", sym: "Sc"},
       {name: "titanium", sym: "Ti"},
       {name: "vanadium", sym: "V"},
       {name: "chromium", sym: "Cr"},
